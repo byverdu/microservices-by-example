@@ -11,7 +11,7 @@ app.get('/', async (_, res) => {
 });
 
 app.get('/video', async (_, res) => {
-  const videoPath = path.resolve('.', 'src/videos/sample.mp4');
+  const videoPath = path.resolve('.', 'videos/sample.mp4');
 
   try {
     const fileSize = await stat(videoPath);

@@ -4,7 +4,7 @@
 
 ```sh
 # Build the image
-> docker build -t video-streaming --file DockerFile .
+> docker build -t video-streaming --file Dockerfile .
 # -t tag = readable name
 # --file specify docker file name
 

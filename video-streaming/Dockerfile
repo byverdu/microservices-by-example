@@ -2,12 +2,11 @@ FROM node:20.6.0
 
 WORKDIR /usr/src/app
 COPY package.json ./
-COPY pnpm-lock.yaml ./
 
 RUN npm install -g pnpm
 RUN pnpm i --prod
 
 COPY ./src ./src
-COPY ./src/videos ./src/videos
+COPY ./videos ./videos
 
 CMD pnpm run start
