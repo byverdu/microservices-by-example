@@ -29,8 +29,12 @@
 > docker image rmi <image-id> -f
 
 # Publishing the image to the registry
-# 1. Login
+# Create repository on ECR
+# 1. Login from the command line
 > aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 238829.dkr.ecr.eu-north-1.amazonaws.com
+
+# build the image
+> docker build -t video-streaming .
 
 # 2. Tagging
 > docker tag video-streaming:latest 238829.dkr.ecr.eu-north-1.amazonaws.com/video-streaming:latest

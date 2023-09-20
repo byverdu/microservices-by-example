@@ -1,5 +1,3 @@
-import 'dotenv/config.js';
-
 import { app } from './app.js';
 
 if (!process.env.PORT) {
