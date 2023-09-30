@@ -12,7 +12,7 @@ app.get('/video', async (req, res) => {
     {
       host: VIDEO_STORAGE_HOST,
       port: VIDEO_STORAGE_PORT,
-      path: '/video?path=SampleVideo_1280x720_1mb.mp4',
+      path: '/video?id=sample.mp4',
       method: 'GET',
       headers: req.headers,
     },
