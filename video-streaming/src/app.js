@@ -1,30 +1,28 @@
 import express from 'express';
-import fs, { promises } from 'fs';
-import path from 'path';
-
-const { stat } = promises;
+import http from 'http';
 
 const app = express();
 
 app.get('/', async (_, res) => {
-  res.send('hello world');
+  res.send('hello world video-streaming');
 });
 
-app.get('/video', async (_, res) => {
-  const videoPath = path.resolve('.', 'videos/sample.mp4');
+app.get('/video', async (req, res) => {
+  const forwardRequest = http.request(
+    {
+      host: VIDEO_STORAGE_HOST,
+      port: VIDEO_STORAGE_PORT,
+      path: '/video?path=SampleVideo_1280x720_1mb.mp4',
+      method: 'GET',
+      headers: req.headers,
+    },
+    (forwardResponse) => {
+      res.writeHeader(forwardResponse.statusCode, forwardResponse.headers);
+      forwardResponse.pipe(res);
+    }
+  );
 
-  try {
-    const fileSize = await stat(videoPath);
-
-    res.writeHead(200, {
-      'Content-Length': fileSize.size,
-      'Content-Type': 'video/mp4',
-    });
-
-    fs.createReadStream(videoPath).pipe(res);
-  } catch (e) {
-    res.send(String(e));
-  }
+  req.pipe(forwardRequest);
 });
 
 export { app };
