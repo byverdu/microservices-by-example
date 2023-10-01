@@ -17,3 +17,6 @@ pre-commit:
   commands:
     eslint:
       run: npx eslint {staged_files}
+    yamllint:
+      glob: "*.yaml"
+      run: yamllint {staged_files}

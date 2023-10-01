@@ -1,0 +1,13 @@
+extends: default
+
+yaml-files:
+  - "*.yaml"
+  - "*.yml"
+  - ".yamllint"
+ignore:
+  - node_modules
+  - pnpm-lock.yaml
+
+rules:
+  document-start:
+    present: false
