@@ -9,5 +9,4 @@ RUN pnpm i --prod
 COPY ./src ./src
 COPY ./.env .
 
-
 CMD pnpm run start

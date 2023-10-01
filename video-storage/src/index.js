@@ -1,7 +1,13 @@
 import { app } from './app.js';
 
 const { PORT } = process.env;
-const envVarsToValidate = ['PORT', 'VIDEO_STORAGE_HOST', 'VIDEO_STORAGE_PORT'];
+const envVarsToValidate = [
+  'PORT',
+  'S3_BUCKET_REGION',
+  'S3_BUCKET_NAME',
+  'AWS_KEY_ID',
+  'AWS_ACCESS_KEY',
+];
 
 for (const env of envVarsToValidate) {
   if (!process.env[env]) {

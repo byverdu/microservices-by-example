@@ -2,6 +2,7 @@ import express from 'express';
 import http from 'http';
 
 const app = express();
+const { VIDEO_STORAGE_HOST, VIDEO_STORAGE_PORT } = process.env;
 
 app.get('/', async (_, res) => {
   res.send('hello world video-streaming');
