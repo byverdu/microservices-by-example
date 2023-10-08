@@ -15,4 +15,4 @@ for (const env of envVarsToValidate) {
   }
 }
 
-app.listen(PORT, () => console.log(`Application running on port ${PORT}.`));
+app.listen(PORT, () => console.log(`video-storage running on port ${PORT}.`));

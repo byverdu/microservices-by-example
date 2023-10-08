@@ -1,12 +1,22 @@
-FROM node:20.6.0
+FROM node:20.6.0 as builder
+
+ARG NODE_ENV
+ENV NODE_ENV=$NODE_ENV
 
 WORKDIR /usr/src/app
+
 COPY package.json ./
+COPY pnpm-lock.yaml ./
+COPY src ./src
+COPY .env ./
 
 RUN npm install -g pnpm
-RUN pnpm i --prod
+RUN pnpm install
 
-COPY ./src ./src
-COPY ./.env .
+# The instructions for second stage
+FROM node:20.6.0-slim
 
-CMD pnpm run start
+WORKDIR /usr/src/app
+COPY --from=builder /usr/src/app/ .
+
+CMD npm run start

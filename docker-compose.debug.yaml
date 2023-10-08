@@ -1,0 +1,23 @@
+version: '3'
+services:
+  video-streaming-debug:
+    extends:
+      file: docker-compose.yaml
+      service: video-streaming
+    build:
+      args:
+        - NODE_ENV=production
+    ports:
+      - '9229:9229'
+    command: npm run start:debug
+
+  video-storage-debug:
+    extends:
+      file: docker-compose.yaml
+      service: video-storage
+    build:
+      args:
+        - NODE_ENV=production
+    ports:
+      - '9230:9230'
+    command: npm run start:debug
