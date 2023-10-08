@@ -16,7 +16,7 @@ app.get('/', async (_, res) => {
 });
 
 app.get('/video', async (req, res) => {
-  const videoName = req.query.id;
+  const videoName = req.query.path;
 
   if (!videoName) {
     res.send('No video name provided');
