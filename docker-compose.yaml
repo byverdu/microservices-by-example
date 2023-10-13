@@ -1,5 +1,11 @@
 version: '3'
 services:
+  db:
+    image: mongo:5.0.9
+    container_name: db
+    ports:
+      - '4002:27017'
+
   video-streaming:
     image: video-streaming
     build:
@@ -39,9 +45,3 @@ services:
       - S3_BUCKET_NAME=${S3_BUCKET_NAME}
       - NODE_ENV=production
     restart: 'no'
-
-  db:
-    image: mongo:5.0.9
-    container_name: db
-    ports:
-      - '4002:27017'

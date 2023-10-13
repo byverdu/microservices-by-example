@@ -19,4 +19,4 @@ FROM node:20.6.0-slim
 WORKDIR /usr/src/app
 COPY --from=builder /usr/src/app/ .
 
-CMD ls -a node_modules && npm run start
+CMD npm run start
