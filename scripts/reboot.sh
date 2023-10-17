@@ -1,28 +1,34 @@
 #!/bin/bash
 
+source ./scripts/setup.sh
+
 # reboot docker
 
 TEMP=$1
 MODE=$(echo "${TEMP:-prod}" | tr '[:lower:]' '[:upper:]')
+ERROR_MSG='You need to use debug or dev or blank'
 
 if [[ ${MODE} != 'PROD' ]] && [[ ${MODE} != 'DEV' ]] && [[ ${MODE} != 'DEBUG' ]]; then
-    echo 'You need to use debug or dev or blank'
-    exit 1
+  printColors red "${ERROR_MSG}"
+
+  exit 0
 fi
 
-echo -e "\033[0;32m Rebooting application in ${MODE} mode \033[0m\n"
+get_microservices_envs
+
+printColors green "Rebooting application in ${MODE} mode"
 
 case ${MODE} in
 DEV)
-    docker compose down && docker compose --file docker-compose.dev.yaml --env-file=./.env up --build
-    ;;
+  docker compose down && docker compose --file docker-compose.dev.yaml --env-file=./.env up --build
+  ;;
 DEBUG)
-    docker compose down && docker compose --file docker-compose.debug.yaml --env-file=./.env up --build
-    ;;
+  docker compose down && docker compose --file docker-compose.debug.yaml --env-file=./.env up --build
+  ;;
 PROD)
-    docker compose down && docker compose --env-file=./.env up --build
-    ;;
+  docker compose down && docker compose --env-file=./.env up --build
+  ;;
 *)
-    echo 'You need to use debug or dev or blank'
-    ;;
+  echo 'You need to use debug or dev or blank'
+  ;;
 esac
