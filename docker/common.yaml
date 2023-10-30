@@ -1,0 +1,8 @@
+version: "3"
+services:
+  db:
+    image: mongo:5.0.9
+    container_name: db
+    ports:
+      - "4002:27017"
+    restart: always

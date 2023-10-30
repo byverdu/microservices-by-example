@@ -44,4 +44,8 @@
 
 # 4. Use image from repository
 > docker run -d -p 3000:3000 -e PORT=3000 238829.dkr.ecr.eu-north-1.amazonaws.com/video-streaming
+
+# Get aws credentials
+> aws configure get aws_access_key_id
+>aws configure get aws_secret_access_key
 ```
