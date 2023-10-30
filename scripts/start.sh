@@ -19,15 +19,15 @@ printColors green "Starting application in ${MODE} mode"
 
 case ${MODE} in
 DEV)
-    docker compose --file docker-compose.dev.yaml --env-file=./.env up --build
-    ;;
+  docker compose -f docker/common.yaml -f docker/dev.yaml up --build
+  ;;
 DEBUG)
-    docker compose --file docker-compose.debug.yaml --env-file=./.env up --build
-    ;;
+  docker compose -f docker/common.yaml -f docker/debug.yaml up --build
+  ;;
 PROD)
-    docker compose --env-file=./.env up --build
-    ;;
+  docker compose -f docker/common.yaml -f docker/prod.yaml up --build
+  ;;
 *)
-    echo "${ERROR_MSG}"
-    ;;
+  echo "${ERROR_MSG}"
+  ;;
 esac

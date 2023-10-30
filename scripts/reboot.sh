@@ -20,13 +20,13 @@ printColors green "Rebooting application in ${MODE} mode"
 
 case ${MODE} in
 DEV)
-  docker compose down && docker compose --file docker-compose.dev.yaml --env-file=./.env up --build
+  docker compose down && docker compose -f docker/common.yaml -f docker/dev.yaml up --build
   ;;
 DEBUG)
-  docker compose down && docker compose --file docker-compose.debug.yaml --env-file=./.env up --build
+  docker compose down && docker compose -f docker/common.yaml -f docker/debug.yaml up --build
   ;;
 PROD)
-  docker compose down && docker compose --env-file=./.env up --build
+  docker compose down && docker compose -f docker/common.yaml -f docker/prod.yaml up --build
   ;;
 *)
   echo 'You need to use debug or dev or blank'
