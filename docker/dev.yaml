@@ -3,7 +3,7 @@ services:
   video-streaming-dev:
     image: video-streaming
     build:
-      context: ../video-streaming
+      context: ../services/video-streaming
       dockerfile: Dockerfile
       target: base
       args:

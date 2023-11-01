@@ -10,7 +10,7 @@ printColors() {
 }
 
 function get_microservices_envs() {
-  SERVICES=("streaming")
+  SERVICES=("streaming" "storage")
   DEST_PATH="./docker/.env"
 
   printColors orange "Removing values from ${DEST_PATH}"
@@ -19,13 +19,13 @@ function get_microservices_envs() {
   pids=() # Initialize an array to store child process IDs
 
   for path in "${SERVICES[@]}"; do
-    SERVICE_PATH="video-${path}/.env"
+    SERVICE_PATH="services/video-${path}/.env"
 
     if [[ -f "${SERVICE_PATH}" ]]; then
       printColors green "Copying ${SERVICE_PATH} to ${DEST_PATH}"
       cat "${SERVICE_PATH}" >>"${DEST_PATH}" &
       pids+=($!) # Store the child process ID in the array
-      cp Dockerfile "video-${path}/"
+      cp Dockerfile "services/video-${path}/"
     else
       printColors orange "File ${SERVICE_PATH} does not exist, skipping."
     fi

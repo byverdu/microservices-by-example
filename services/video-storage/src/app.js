@@ -2,9 +2,10 @@ import express from 'express';
 import { S3 } from '@aws-sdk/client-s3';
 
 const app = express();
-const { S3_BUCKET_NAME, AWS_KEY_ID, AWS_ACCESS_KEY } = process.env;
+const { S3_BUCKET_NAME, AWS_KEY_ID, AWS_ACCESS_KEY, S3_BUCKET_REGION } =
+  process.env;
 const client = new S3({
-  region: 'eu-west-2',
+  region: S3_BUCKET_REGION,
   credentials: {
     accessKeyId: AWS_KEY_ID,
     secretAccessKey: AWS_ACCESS_KEY,
