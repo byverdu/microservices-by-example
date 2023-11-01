@@ -1,6 +1,6 @@
 version: "3"
 services:
-  video-streaming-dev:
+  video-streaming-debug:
     image: video-streaming
     build:
       context: ../services/video-streaming
@@ -20,5 +20,27 @@ services:
       - VIDEO_STORAGE_PORT=${VIDEO_STORAGE_PORT}
       - DB_HOST=${DB_HOST}
       - DB_NAME=${DB_NAME}
+    command: npm run start:debug
+    restart: "no"
+  video-storage-debug:
+    image: video-storage
+    build:
+      context: ../services/video-storage
+      dockerfile: Dockerfile
+      args:
+        - NODE_ENV=production
+    container_name: video-storage-debug
+    depends_on:
+      - db
+    ports:
+      - "4000:80"
+      - "9229:9229"
+    environment:
+      - PORT=80
+      - NODE_ENV=development
+      - S3_BUCKET_REGION=${S3_BUCKET_REGION}
+      - S3_BUCKET_NAME=${S3_BUCKET_NAME}
+      - AWS_KEY_ID=${AWS_KEY_ID}
+      - AWS_ACCESS_KEY=${AWS_ACCESS_KEY}
     command: npm run start:debug
     restart: "no"

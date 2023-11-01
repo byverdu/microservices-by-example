@@ -22,3 +22,25 @@ services:
     restart: "no"
     env_file:
       - ".env"
+  video-storage:
+    image: video-storage
+    build:
+      context: ../services/video-storage
+      dockerfile: Dockerfile
+      args:
+        - NODE_ENV=production
+    container_name: video-storage
+    depends_on:
+      - db
+    ports:
+      - "4001:80"
+    environment:
+      - PORT=80
+      - NODE_ENV=production
+      - S3_BUCKET_REGION=${S3_BUCKET_REGION}
+      - S3_BUCKET_NAME=${S3_BUCKET_NAME}
+      - AWS_KEY_ID=${AWS_KEY_ID}
+      - AWS_ACCESS_KEY=${AWS_ACCESS_KEY}
+    restart: "no"
+    env_file:
+      - ".env"
