@@ -1,4 +1,5 @@
 import express from 'express';
+import morgan from 'morgan';
 import { S3 } from '@aws-sdk/client-s3';
 
 const app = express();
@@ -11,6 +12,8 @@ const client = new S3({
     secretAccessKey: AWS_ACCESS_KEY,
   },
 });
+
+app.use(morgan('dev'));
 
 app.get('/', async (_, res) => {
   res.send('hello world video-storage');

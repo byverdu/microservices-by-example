@@ -1,6 +1,7 @@
 import express from 'express';
 import http from 'http';
 import mongodb from 'mongodb';
+import morgan from 'morgan';
 
 const startUp = async () => {
   const { VIDEO_STORAGE_HOST, VIDEO_STORAGE_PORT, DB_NAME, DB_HOST } =
@@ -9,6 +10,8 @@ const startUp = async () => {
   const db = client.db(DB_NAME);
   const videosCollection = db.collection('videos');
   const app = express();
+
+  app.use(morgan('dev'));
 
   app.get('/', async (_, res) => {
     res.send('hello world video-streaming ;s');
