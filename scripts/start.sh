@@ -19,13 +19,13 @@ printColors green "Starting application in ${MODE} mode"
 
 case ${MODE} in
 DEV)
-  docker compose -f docker/common.yaml -f docker/dev.yaml up --build
+  docker compose -f docker/dev.yaml up --build --no-attach rabbit --no-attach db
   ;;
 DEBUG)
-  docker compose -f docker/common.yaml -f docker/debug.yaml up --build
+  docker compose -f docker/common.yaml -f docker/debug.yaml up --build --no-attach rabbit --no-attach db
   ;;
 PROD)
-  docker compose -f docker/common.yaml -f docker/prod.yaml up --build
+  docker compose -f docker/common.yaml -f docker/prod.yaml up --build --no-attach rabbit --no-attach db
   ;;
 *)
   echo "${ERROR_MSG}"
