@@ -1,0 +1,25 @@
+{
+  "name": "video-history",
+  "version": "1.0.0",
+  "description": "Service to save video history in mongodb",
+  "main": "./src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --env-file ./.env src/index.js",
+    "start:dev": "nodemon -L --inspect=0.0.0.0:9231 --env-file ./.env src/index.js",
+    "start:debug": "node --inspect=0.0.0.0:9231 --env-file ./.env src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.10.3",
+    "express": "^4.18.2",
+    "mongodb": "^6.2.0",
+    "morgan": "^1.10.0",
+    "wait-port": "^1.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
