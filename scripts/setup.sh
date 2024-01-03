@@ -10,7 +10,7 @@ printColors() {
 }
 
 function get_microservices_envs() {
-  SERVICES=("streaming" "storage")
+  SERVICES=("streaming" "storage" "history")
   DEST_PATH="./docker/.env"
 
   printColors orange "Removing values from ${DEST_PATH}"

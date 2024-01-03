@@ -49,3 +49,23 @@
 > aws configure get aws_access_key_id
 > aws configure get aws_secret_access_key
 ```
+
+## pnpm workspaces
+
+Create a `pnpm-workspace.yaml` file and include the packages for the workspace.
+
+Add `shared-workspace-lockfile=false` in a .npmrc file if you want to add a pnpm-lock file for every package. Otherwise will create it on the root of the project.
+
+```bash
+# install to all the packages
+> pnpm add express --filter "*"
+
+# install to a single package
+> pnpm add express --filter "api"
+
+# install to the root of the project
+> pnpm add eslint --workspace-root
+
+# install all the npm packages for all the workspace packages
+> pnpm i
+```
